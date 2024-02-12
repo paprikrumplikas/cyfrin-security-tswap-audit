@@ -1,0 +1,20 @@
+INFO:Detectors:
+PoolFactory.s_pools (src/PoolFactory.sol#27) is never initialized. It is used in:
+        - PoolFactory.createPool(address) (src/PoolFactory.sol#47-58)
+        - PoolFactory.getPool(address) (src/PoolFactory.sol#63-65)
+PoolFactory.s_tokens (src/PoolFactory.sol#28) is never initialized. It is used in:
+        - PoolFactory.getToken(address) (src/PoolFactory.sol#67-69)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-state-variables
+INFO:Detectors:
+PoolFactory.constructor(address).wethToken (src/PoolFactory.sol#40) lacks a zero-check on :
+                - i_wethToken = wethToken (src/PoolFactory.sol#41)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+INFO:Detectors:
+Reentrancy in TSwapPool._swap(IERC20,uint256,IERC20,uint256) (src/TSwapPool.sol#332-347):
+        External calls:
+        - outputToken.safeTransfer(msg.sender,1_000_000_000_000_000_000) (src/TSwapPool.sol#341)
+        Event emitted after the call(s):
+        - Swap(msg.sender,inputToken,inputAmount,outputToken,outputAmount) (src/TSwapPool.sol#343)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+INFO:Slither:. analyzed (46 contracts with 90 detectors), 4 result(s) found
+make: *** [Makefile:36: slither] Error 255
